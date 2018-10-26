@@ -77,7 +77,7 @@ class AdminTaskController extends Controller
         }
 
         $users = ArrayHelper::map(Users::find()->all(), 'id', 'login');
-
+//var_dump($users);
         return $this->render('create', [
             'model' => $model,
             'users' => $users
@@ -99,8 +99,10 @@ class AdminTaskController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $users = ArrayHelper::map(Users::find()->all(), 'id', 'login');
         return $this->render('update', [
             'model' => $model,
+            'users' => $users
         ]);
     }
 

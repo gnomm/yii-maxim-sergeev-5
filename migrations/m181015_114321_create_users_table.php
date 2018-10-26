@@ -16,7 +16,7 @@ class m181015_114321_create_users_table extends Migration
             'id' => $this->primaryKey(),
             'login' => $this->string(50)->notNull(),
             'password' => $this->string(128)->notNull(),
-            'role_id' => $this->integer()->defaultValue(1)
+            'role_id' => $this->integer()->notNull()
         ]);
 
 //        $this->addForeignKey('fk_users_roles', 'users', 'role_id', 'roles', 'id','CASCADE');

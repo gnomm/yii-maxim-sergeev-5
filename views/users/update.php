@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = 'Update';
 <div class="users-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<?php //var_dump($model)?>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

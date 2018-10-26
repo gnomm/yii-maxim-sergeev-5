@@ -20,7 +20,7 @@ class m181015_144311_create_task_table extends Migration
             'user_id' => $this->integer()
         ]);
 
-        $this ->addForeignKey('fk_task_users_id', "tasks", 'user_id', 'users', 'id', 'CASCADE');
+        $this ->addForeignKey('fk_task_users_id', "tasks", 'user_id', 'users', 'id');
     }
 
     /**

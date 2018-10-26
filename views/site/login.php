@@ -32,10 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
 
-        <div class="form-group">
+        <div class="form-group ">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <div class="col-lg-offset-2 ">
+                <?= Html::a('Регистрация', '?r=site/reg', ['class' =>  'test'] ) ?>
+                </div>
             </div>
+
         </div>
 
     <?php ActiveForm::end(); ?>

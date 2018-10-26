@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $users  array */
 ?>
 
+<?php //var_dump($model)?>
 <div class="tasks-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -22,7 +23,10 @@ use yii\widgets\ActiveForm;
         'language' => 'ru'
     ]) ?>
 
+<!--    --><?//= $form->field($model, 'user_id')->tes ?>
     <?= $form->field($model, 'user_id')->dropDownList($users) ?>
+<!--    --><?//= $form->field($model, 'created_at') ?>
+<!--    --><?//= $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

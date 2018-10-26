@@ -2,8 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\RegForm;
+use app\models\tables\Roles;
+use app\models\tables\Users;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -125,4 +129,28 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionReg()
+    {
+        $model = new Users();
+        $role = ArrayHelper::map(Roles::find()->all(), 'id', 'name');
+//var_dump($role);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+//            var_dump($model->getAddUser());
+            $model->getAddUser();
+
+            Yii::$app->session->setFlash('regFormSubmitted');
+
+            return $this->refresh();
+        }
+
+//        var_dump((Yii::$app->request->post()));
+
+        return $this->render('reg', [
+            'model' => $model,
+            'role' => $role
+        ]);
+
+    }
+
 }

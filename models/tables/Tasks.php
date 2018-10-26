@@ -69,6 +69,8 @@ class Tasks extends \yii\db\ActiveRecord
             'description' => 'Description',
             'date' => 'Date',
             'user_id' => 'User ID',
+//            'created_at' => 'Created_at',
+//            'updated_at' => 'Updated_at'
         ];
     }
 
