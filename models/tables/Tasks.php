@@ -32,7 +32,6 @@ class Tasks extends \yii\db\ActiveRecord
     }
 
 
-
     /**
      * {@inheritdoc}
      */
@@ -55,6 +54,8 @@ class Tasks extends \yii\db\ActiveRecord
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
 //            [['date'], 'default', 'value' => date('Y-m-d:H:i:s')],
             [['date'], 'default', 'value' => new Expression('NOW()')],
+//            [['date'], 'default', 'value' => Tasks::find()->],
+
             [['date'], 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>='],
 //            [['date'], 'compare', 'compareValue' => new Expression('NOW()'), 'operator' => '>='],
 
