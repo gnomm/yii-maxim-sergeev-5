@@ -15,17 +15,11 @@ use yii\captcha\Captcha;
  * @property string $password
  * @property int $role_id
  * @property string $email
- *
  * @property Tasks[] $tasks
  */
 class Users extends \yii\db\ActiveRecord
 {
-//    public $password_repeat;
-//    public $login;
-//    public $email;
-//    public $password;
-//    public $role_id;
-//    public $verifyCode;
+    public $password_repeat;
 
     /**
      * {@inheritdoc}
@@ -50,6 +44,8 @@ class Users extends \yii\db\ActiveRecord
             [['email'], 'unique', 'targetClass' => Users::className(), 'message' => 'Данный email уже зарегестрирован'],
             [['login'], 'unique', 'targetClass' => Users::className(), 'message' => 'Этот логин уже занят'],
 //            ['verifyCode', 'captcha'],
+//            [['password_repeat'], 'required'],
+//            ['password', 'compare', 'compareAttribute' => 'password_repeat'],
         ];
     }
 
@@ -82,10 +78,11 @@ class Users extends \yii\db\ActiveRecord
     {
         $user = new Users();
         $user->login = $this->login;
-        $user->password = \Yii::$app->security->generatePasswordHash($this->password);
+        $user->password= \Yii::$app->security->generatePasswordHash($this->password);
         $user->email = $this->email;
         $user->role_id = $this->role_id;
         return $user->save();
+//        var_dump($user->save());
 //        var_dump($user);
     }
 
