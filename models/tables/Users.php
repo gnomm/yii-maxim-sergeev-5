@@ -4,7 +4,9 @@ namespace app\models\tables;
 
 use Yii;
 use yii\base\Model;
+use yii\behaviors\TimestampBehavior;
 use yii\captcha\Captcha;
+use yii\db\Expression;
 
 
 /**
@@ -19,6 +21,17 @@ use yii\captcha\Captcha;
  */
 class Users extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
+
     public $password_repeat;
 
     /**
@@ -76,6 +89,7 @@ class Users extends \yii\db\ActiveRecord
 
     public function getAddUser()
     {
+
         $user = new Users();
         $user->login = $this->login;
         $user->password= \Yii::$app->security->generatePasswordHash($this->password);

@@ -27,16 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <!--        --><? //= $form->field($model, 'password_repeat')->passwordInput()->label('Re-Password') ?>
         <?= $form->field($model, 'email')->input('email')->hint('Введите ваш электронный адрес') ?>
         <?= $form->field($model, 'role_id')->dropDownList($role) ?>
+        <div class="form-group">
+            <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'reg-button']) ?>
+        </div>
     </div>
+
 </div>
 <!---->
 <? //= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
 //    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
 //]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'reg-button']) ?>
-    </div>
+
 
 <?php ActiveForm::end(); ?>
 <?php endif; ?>
