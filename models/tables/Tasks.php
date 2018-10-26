@@ -21,18 +21,17 @@ use yii\db\Expression;
 class Tasks extends \yii\db\ActiveRecord
 {
 
- public function behaviors()
- {
-     return [
-         [
-             'class' => TimestampBehavior::className(),
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
 //             'createdAtAttribute' => 'create_time',
 //             'updatedAtAttribute' => 'update_time',
-             'value' => new Expression('NOW()'),
-         ],
-     ];
- }
-
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
 
 
 
@@ -43,6 +42,7 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return 'tasks';
     }
+
 
     /**
      * {@inheritdoc}
@@ -55,6 +55,11 @@ class Tasks extends \yii\db\ActiveRecord
             [['name', 'description'], 'string'],
             [['date'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+//            [['date'], 'default', 'value' => date('Y-m-d:H:i:s')],
+            [['date'], 'default', 'value' => new Expression('NOW()')],
+            [['date'], 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>='],
+//            [['date'], 'compare', 'compareValue' => new Expression('NOW()'), 'operator' => '>='],
+
         ];
     }
 
@@ -108,12 +113,11 @@ class Tasks extends \yii\db\ActiveRecord
 //        $event->sentMassage = 'Привет тыц получил новую задачу';
 //    }
 
-public static function getUserEmail($event) {
-    return static::find()
-        ->where(['user_id' => $event->sender->user_id])
-        ->with('user')
-        ->one();
-}
-
-
+    public static function getUserEmail($event)
+    {
+        return static::find()
+            ->where(['user_id' => $event->sender->user_id])
+            ->with('user')
+            ->one();
+    }
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\tables\tasks */
+/* @var $users array */
 
 
 $this->title = 'Update Tasks: ' . $model->name;
